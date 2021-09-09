@@ -1,0 +1,28 @@
+﻿{
+  "Descriptor": {
+    "UId": "4de2ed5e-11c2-13ac-fb5e-c58ba24f3bb0",
+    "Name": "UsrDPeriodicity",
+    "ModifiedOnUtc": "\/Date(1629460747000)\/",
+    "InstallType": 0,
+    "Schema": {
+      "UId": "0f233643-12a2-4b61-a1d0-acdd82150039",
+      "Name": "UsrDPeriodicity"
+    },
+    "Columns": [
+      {
+        "ColumnUId": "736c30a7-c0ec-4fa9-b034-2552b319b633",
+        "IsForceUpdate": false,
+        "IsKey": false,
+        "ColumnName": "Name",
+        "DataTypeValueUId": "ddb3a1ee-07e8-4d62-b7a9-d0e618b00fbd"
+      },
+      {
+        "ColumnUId": "ae0e45ca-c495-4fe7-a39d-3ab7278e1617",
+        "IsForceUpdate": false,
+        "IsKey": true,
+        "ColumnName": "Id",
+        "DataTypeValueUId": "23018567-a13c-4320-8687-fd6f9e3699bd"
+      }
+    ]
+  }
+}

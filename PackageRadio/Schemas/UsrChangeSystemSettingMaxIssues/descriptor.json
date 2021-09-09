@@ -1,0 +1,10 @@
+﻿{
+  "Descriptor": {
+    "UId": "ca9033da-075b-49f5-b3a8-8830afa8fbc7",
+    "Name": "UsrChangeSystemSettingMaxIssues",
+    "ModifiedOnUtc": "\/Date(1630068773000)\/",
+    "ManagerName": "ProcessSchemaManager",
+    "Caption": "Изменить системную настройку \"Максимальное число активных ежечасных выпусков\"",
+    "DependsOn": []
+  }
+}

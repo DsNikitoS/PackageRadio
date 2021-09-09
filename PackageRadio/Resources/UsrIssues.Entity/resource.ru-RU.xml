@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="ru-RU">
+	<Group Type="String">
+		<Items>
+			<Item Name="Caption" Value="Выпуск" />
+			<Item Name="Columns.UsrCost.Caption" Value="Стоимость" />
+			<Item Name="Columns.UsrDateIssues.Caption" Value="Дата выпуска" />
+			<Item Name="Columns.UsrDurationIssues.Caption" Value="Длительность выпуска, мин”" />
+			<Item Name="Columns.UsrName.Caption" Value="Название" />
+			<Item Name="Columns.UsrPresenter.Caption" Value="Ведущий" />
+			<Item Name="Columns.UsrStatusIssue.Caption" Value="Состояние выпуска" />
+			<Item Name="Columns.UsrUsrAdUnits.Caption" Value="Рекламные блоки" />
+		</Items>
+	</Group>
+</Resources>

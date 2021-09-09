@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "168e6c9b-73e4-4cb6-9cef-fcd9a7b11142",
+    "Name": "UsrSchema064d9182Page",
+    "ModifiedOnUtc": "\/Date(1629461908000)\/",
+    "Parent": {
+      "UId": "d3cc497c-f286-4f13-99c1-751c468733c0",
+      "Name": "BasePageV2"
+    },
+    "ManagerName": "ClientUnitSchemaManager",
+    "Caption": "Выпуск",
+    "DependsOn": []
+  }
+}

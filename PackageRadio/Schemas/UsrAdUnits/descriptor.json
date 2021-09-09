@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "c5c0ff4c-b90e-4ae0-aeaf-1a8d79334127",
+    "Name": "UsrAdUnits",
+    "ModifiedOnUtc": "\/Date(1629453573000)\/",
+    "Parent": {
+      "UId": "1bab9dcf-17d5-49f8-9536-8e0064f1dce0",
+      "Name": "BaseEntity"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Рекламные блоки",
+    "DependsOn": []
+  }
+}

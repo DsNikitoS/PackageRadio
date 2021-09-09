@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="ru-RU">
+	<Group Type="String">
+		<Items>
+			<Item Name="Caption" Value="Рекламные блоки" />
+			<Item Name="Columns.UsrCode.Caption" Value="Код" />
+			<Item Name="Columns.UsrComment.Caption" Value="Комментарий" />
+			<Item Name="Columns.UsrIsActive.Caption" Value="Активен" />
+			<Item Name="Columns.UsrName.Caption" Value="Название" />
+			<Item Name="Columns.UsrNotes.Caption" Value="Заметки" />
+			<Item Name="Columns.UsrOwner.Caption" Value="Ответственный" />
+			<Item Name="Columns.UsrPeriodicity.Caption" Value="Периодичность" />
+		</Items>
+	</Group>
+</Resources>

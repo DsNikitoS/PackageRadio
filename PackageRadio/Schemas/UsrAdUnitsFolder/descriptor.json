@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "88138384-70b1-499e-80ee-9ea6d4a7a15f",
+    "Name": "UsrAdUnitsFolder",
+    "ModifiedOnUtc": "\/Date(1629453599000)\/",
+    "Parent": {
+      "UId": "d602bf96-d029-4b07-9755-63c8f5cb5ed5",
+      "Name": "BaseFolder"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Группа Рекламные блоки",
+    "DependsOn": []
+  }
+}

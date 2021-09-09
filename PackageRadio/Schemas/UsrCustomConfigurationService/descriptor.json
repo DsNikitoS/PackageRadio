@@ -1,0 +1,10 @@
+﻿{
+  "Descriptor": {
+    "UId": "80b1b7fa-da1c-4e27-a882-905fee3875a0",
+    "Name": "UsrCustomConfigurationService",
+    "ModifiedOnUtc": "\/Date(1629734761000)\/",
+    "ManagerName": "SourceCodeSchemaManager",
+    "Caption": "UsrCustomConfigurationService",
+    "DependsOn": []
+  }
+}

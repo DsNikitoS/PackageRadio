@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "443de4bd-4a4f-4e73-b313-df55c5ba4d1d",
+    "Name": "UsrDStatusIssue",
+    "ModifiedOnUtc": "\/Date(1629461921000)\/",
+    "Parent": {
+      "UId": "11ab4bcb-9b23-4b6d-9c86-520fae925d75",
+      "Name": "BaseLookup"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Состояние выпуска",
+    "DependsOn": []
+  }
+}

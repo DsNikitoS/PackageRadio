@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "390a1536-5eaa-4cfe-9e2a-a72f0516d016",
+    "Name": "UsrAdUnits54824299Section",
+    "ModifiedOnUtc": "\/Date(1629453524000)\/",
+    "Parent": {
+      "UId": "7912fb69-4fee-429f-8b23-93943c35d66d",
+      "Name": "BaseSectionV2"
+    },
+    "ManagerName": "ClientUnitSchemaManager",
+    "Caption": "Схема раздела: \"Рекламные блоки\"",
+    "DependsOn": []
+  }
+}

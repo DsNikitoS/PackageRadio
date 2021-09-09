@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="ru-RU">
+	<Group Type="String">
+		<Items>
+			<Item Name="Caption" Value="Выпуск" />
+			<Item Name="LocalizableStrings.Caption.Value" Value="Выпуск" />
+			<Item Name="LocalizableStrings.Tab99734111TabLabelGroupa98e72caGroupCaption.Value" Value="Страница редактирования" />
+			<Item Name="LocalizableStrings.Tab99734111TabLabelTabCaption.Value" Value="Стоимостные показатели" />
+		</Items>
+	</Group>
+</Resources>

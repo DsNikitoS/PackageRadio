@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="ru-RU">
+	<Group Type="String">
+		<Items>
+			<Item Name="Caption" Value="Страница редактирования: &quot;Рекламные блоки&quot;" />
+			<Item Name="LocalizableStrings.UsrSchemae5cb3e04Detail59d8467aDetailCaptionOnPage.Value" Value="Выпуск" />
+		</Items>
+	</Group>
+</Resources>
