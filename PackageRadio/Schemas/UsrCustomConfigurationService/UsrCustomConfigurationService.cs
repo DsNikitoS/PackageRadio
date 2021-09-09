@@ -163,7 +163,6 @@
         // Если UsrName оставлен пустым, то выводятся все выпуски
         public string GetInfoAboutIssues(string UsrName)
         {
-
             var result = "{}";
             var select = new Select(UserConnection)
                 .Column("UsrIssues", "UsrName").As("NameIssue")
