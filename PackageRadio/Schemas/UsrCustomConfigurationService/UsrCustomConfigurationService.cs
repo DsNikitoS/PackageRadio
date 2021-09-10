@@ -205,6 +205,27 @@
             return select;
         }
 
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
+       ResponseFormat = WebMessageFormat.Json)]
+
+        // Метод изменения статуса выпуска по его дате.
+
+        public string UpdateStatusIssues(string issueForChange, string nameNewStatusIssue)
+        {
+            Guid issueForChangeGuid = new Guid(issueForChange);
+            Guid nameNewStatusIssueGuid = new Guid(nameNewStatusIssue);
+
+            // Если nameNewStatusIssue == какому-то выпуску, то
+            //  -> Если статус такой же, то не меняю, иначе меняю. (чтобы не делать лишних операций)
+            var update = new Update(UserConnection, "UsrIssues")
+                .Set("UsrStatusIssueId", Column.Parameter(nameNewStatusIssueGuid))
+                .Where("UsrIssues", "Id").IsEqual(Column.Parameter(issueForChangeGuid))
+                .And("UsrIssues", "UsrStatusIssueId").IsNotEqual(Column.Parameter(nameNewStatusIssueGuid));
+            var cnt = update.Execute();
+            return $"Значение статуса выпуска с Id {issueForChange} изменено на {nameNewStatusIssue}. Затронуто :{cnt} строчек ";
+        }
+
         private string CreateJson(IDataReader dataReader)
         {
             var list = new List<dynamic>();
