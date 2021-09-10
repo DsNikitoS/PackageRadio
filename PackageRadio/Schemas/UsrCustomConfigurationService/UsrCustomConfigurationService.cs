@@ -216,8 +216,6 @@
             Guid issueForChangeGuid = new Guid(issueForChange);
             Guid nameNewStatusIssueGuid = new Guid(nameNewStatusIssue);
 
-            // Если nameNewStatusIssue == какому-то выпуску, то
-            //  -> Если статус такой же, то не меняю, иначе меняю. (чтобы не делать лишних операций)
             var update = new Update(UserConnection, "UsrIssues")
                 .Set("UsrStatusIssueId", Column.Parameter(nameNewStatusIssueGuid))
                 .Where("UsrIssues", "Id").IsEqual(Column.Parameter(issueForChangeGuid))
