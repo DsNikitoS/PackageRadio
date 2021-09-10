@@ -161,22 +161,21 @@
 
         // Метод вывода информации о выпуске по его имени
         // Если UsrName оставлен пустым, то выводятся все выпуски
-        public string GetInfoAboutIssues(string UsrName)
+        public string GetInfoAboutIssues(string usrName)
         {
             var result = "{}";
-            var select = new Select(UserConnection)
-                .Column("UsrIssues", "UsrName").As("NameIssue")
-                .Column("UsrAdUnits", "UsrName").As("NameAdUnit")
-                .Column("UsrIssues", "UsrDateIssues").As("DateIssue")
-                .Column("UsrIssues", "UsrPresenter").As("PresenterIssue")
-                .Column("UsrIssues", "UsrDurationIssues").As("DurationIssue")
-                .Column("UsrDStatusIssue", "Name").As("NameStatusIssue")
-                .Column("UsrIssues", "UsrCost").As("CostIssue")
-                .From("UsrIssues")
-                .InnerJoin("UsrAdUnits").On("UsrAdUnits", "Id").IsEqual("UsrIssues", "UsrUsrAdUnitsId")
-                .InnerJoin("UsrDStatusIssue").On("UsrDStatusIssue", "Id").IsEqual("UsrIssues", "UsrStatusIssueId")
-                .Where("UsrIssues", "UsrName").IsEqual(Column.Parameter(UsrName))
+            var select = new Select(UserConnection);
+
+            if (usrName.IsEmpty())
+            {
+                select = GetAllIssues();
+            }
+            else
+            {
+                select = GetAllIssues().
+                    Where("UsrIssues", "UsrName").IsEqual(Column.Parameter(usrName))
                 as Select;
+            }
 
             using (DBExecutor dbExecutor = UserConnection.EnsureDBConnection())
             {
@@ -188,23 +187,23 @@
             return result;
         }
 
-        /*[OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
-       ResponseFormat = WebMessageFormat.Json)]
+        private Select GetAllIssues()
+        {
+            var select = new Select(UserConnection)
+                .Column("UsrIssues", "UsrName").As("NameIssue")
+                .Column("UsrAdUnits", "UsrName").As("NameAdUnit")
+                .Column("UsrIssues", "UsrDateIssues").As("DateIssue")
+                .Column("UsrIssues", "UsrPresenter").As("PresenterIssue")
+                .Column("UsrIssues", "UsrDurationIssues").As("DurationIssue")
+                .Column("UsrDStatusIssue", "Name").As("NameStatusIssue")
+                .Column("UsrIssues", "UsrCost").As("CostIssue")
+                .From("UsrIssues")
+                .InnerJoin("UsrAdUnits").On("UsrAdUnits", "Id").IsEqual("UsrIssues", "UsrUsrAdUnitsId")
+                .InnerJoin("UsrDStatusIssue").On("UsrDStatusIssue", "Id").IsEqual("UsrIssues", "UsrStatusIssueId")
+                as Select;
 
-        // Метод изменения статуса выпуска по его дате
-
-
-        /*[OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
-       ResponseFormat = WebMessageFormat.Json)]
-
-        // Метод добавления нового рекламного блока.
-
-        *//*public StatusCodeDefinitions AddNewAdUnit(string UsrName, string UsrCode, string UsrPeriodicityId, string UsrOwnerId, string UsrComment, bool UsrIsActive)
-        {s
-
-        }*/
+            return select;
+        }
 
         private string CreateJson(IDataReader dataReader)
         {
