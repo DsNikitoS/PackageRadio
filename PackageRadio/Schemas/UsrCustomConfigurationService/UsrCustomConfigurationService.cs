@@ -59,7 +59,7 @@
             {
                 foreach (var item in entities)
                 {
-                    resultSum += getSumCostCompletedIssues(item.GetTypedColumnValue<Guid>(colNameAdUnitId));
+                    resultSum += getSumCompletedIssues(item.GetTypedColumnValue<Guid>(colNameAdUnitId));
                 }
             }
             else
@@ -70,7 +70,7 @@
             return resultSum;
 		}
 
-        private decimal getSumCostCompletedIssues(Guid adUnitId)
+        private decimal getSumCompletedIssues(Guid adUnitId)
         {
             decimal resultSum = 0;
 
