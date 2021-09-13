@@ -22,23 +22,14 @@
         //Идентификатор статуса выпуска со значением "Завершённый"
         public readonly string ID_STATUS_COMPLETED_ISSUE = "af3fece2-b615-467d-a0f0-611fbf0a27a2";
 
-        //Тестовый метод GET
-        [OperationContract]
-        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
-       ResponseFormat = WebMessageFormat.Json)]
-        public string GetHello()
-        {
-            return "Hello";
-        }
-
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
        ResponseFormat = WebMessageFormat.Json)]
         
-        // Способ первый - Esq-фильтры.
-        public decimal GetSumCostCompletedIssues(string code){
+        // Способ первый через фильтры.
+        public decimal GetSumCostCompletedIssues(string usrCode){
 
-            if (code.IsEmpty())
+            if (usrCode.IsEmpty())
             {
                 return -1;
             }
@@ -50,7 +41,7 @@
             var colNameAdUnitId = esqAdUnits.AddColumn("Id").Name;
             esqAdUnits.AddColumn("UsrCode");
 
-            var esqFilterByCode = esqAdUnits.CreateFilterWithParameters(FilterComparisonType.Equal, "UsrCode", code);
+            var esqFilterByCode = esqAdUnits.CreateFilterWithParameters(FilterComparisonType.Equal, "UsrCode", usrCode);
             esqAdUnits.Filters.Add(esqFilterByCode);
 
             var entities = esqAdUnits.GetEntityCollection(UserConnection);
@@ -106,8 +97,8 @@
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
        ResponseFormat = WebMessageFormat.Json)]
 
-        // Способ второй - Доступ к данным через ORM.
-        public decimal getAmountCostComplitedIssues(string codeAdUnit)
+        // Способ второй
+        public decimal GetAmountCostComplitedIssues(string codeAdUnit)
         {
             decimal result = 0;
 
