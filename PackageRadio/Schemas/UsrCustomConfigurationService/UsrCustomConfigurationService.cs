@@ -224,6 +224,72 @@
             return $"Значение статуса выпуска с Id {issueForChange} изменено на {nameNewStatusIssue}. Затронуто :{cnt} строчек ";
         }
 
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
+       ResponseFormat = WebMessageFormat.Json)]
+
+        public string AddNewIssue(string idAdUnit, string idStatusIssue, string nameIssue, string namePresenter, int costIssue = 0, int durationIssue = 0)
+        {
+            nameIssue = (nameIssue == "") ? "!!!Пусто!!!" : nameIssue;
+            namePresenter = (namePresenter == "") ? "!!!Пусто!!!" : namePresenter;
+
+            if (idAdUnit.IsEmpty())
+            {
+                return "Вы не ввели Id рекламного блока";
+            }
+            if (idStatusIssue.IsEmpty())
+            {
+                return "Вы не ввели Id справочника!";
+            }
+
+            Guid idAdUnitGuid = new Guid(idAdUnit);
+            Guid idStatusIssueGuid = new Guid(idStatusIssue);
+
+            DateTime dateIssueDateTime = DateTime.Now.Subtract(new TimeSpan(3, 0, 0));
+            string dateIssue = dateIssueDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+            var ins = new Insert(UserConnection)
+                .Into("UsrIssues")
+                .Set("UsrName", Column.Parameter(nameIssue))
+                .Set("UsrUsrAdUnitsId", Column.Parameter(idAdUnitGuid))
+                .Set("UsrDateIssues", Column.Parameter(dateIssue))
+                .Set("UsrPresenter", Column.Parameter(namePresenter))
+                .Set("UsrDurationIssues", Column.Parameter(durationIssue))
+                .Set("UsrStatusIssueId", Column.Parameter(idStatusIssueGuid))
+                .Set("UsrCost", Column.Parameter(costIssue));
+            var affectedRows = ins.Execute();
+
+            return $"Добавлен новый выпуск '{nameIssue}' с датой {dateIssue}. " +
+                $"Выступающий {namePresenter}, длительность {durationIssue}, стоимость {costIssue}. " +
+                $"Добавлено строк: {affectedRows}";
+        }
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
+      ResponseFormat = WebMessageFormat.Json)]
+
+        public string DeleteIssue(string idIssue)
+        {
+            var delete = new Delete(UserConnection)
+                .From("UsrIssues")
+                .Where("UsrIssues", "Id").IsEqual(Column.Parameter(idIssue));
+            var cnt = delete.Execute();
+            return $"Выпуск с Id = {idIssue} был удалён. Затронуто записей: {cnt}";
+        }
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
+      ResponseFormat = WebMessageFormat.Json)]
+
+        public string DeleteAllLowCostIssue(string lowCost)
+        {
+            var delete = new Delete(UserConnection)
+                .From("UsrIssues")
+                .Where("UsrIssues", "UsrCost").IsLessOrEqual(Column.Parameter(lowCost));
+            var cnt = delete.Execute();
+            return $"Выпуски стоимостью <= {lowCost} были удалены. Затронуто записей: {cnt}";
+        }
+        
         private string CreateJson(IDataReader dataReader)
         {
             var list = new List<dynamic>();
