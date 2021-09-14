@@ -231,7 +231,6 @@
        ResponseFormat = WebMessageFormat.Json)]
 
         // Метод изменения статуса выпуска по его дате.
-
         public string UpdateStatusIssues(string issueForChange, string nameNewStatusIssue)
         {
             Guid issueForChangeGuid = new Guid(issueForChange);
