@@ -98,11 +98,11 @@
        ResponseFormat = WebMessageFormat.Json)]
 
         // Способ второй
-        public decimal GetAmountCostComplitedIssues(string codeAdUnit)
+        public decimal GetAmountCostComplitedIssues(string idAdUnit)
         {
             decimal result = 0;
 
-            if (!CheckExistenceAdUnit(codeAdUnit))
+            if (!ExistenceAdUnit(idAdUnit))
             {
                 return -1;
             }
@@ -111,7 +111,7 @@
                 .Sum("UsrCost").As("SumComplitedIssues")
                 .From("UsrIssues")
                 .Join(JoinType.Inner, "UsrAdUnits").On("UsrAdUnits", "Id").IsEqual("UsrIssues", "UsrUsrAdUnitsId")
-                .Where("UsrAdUnits", "UsrCode").IsEqual(Column.Parameter(codeAdUnit))
+                .Where("UsrAdUnits", "UsrCode").IsEqual(Column.Parameter(idAdUnit))
                     .And("UsrStatusIssueId").IsEqual(Column.Parameter(ID_STATUS_COMPLETED_ISSUE))
                 as Select;
 
@@ -123,9 +123,9 @@
             return result;
         }
 
-        private bool CheckExistenceAdUnit(string codeAdUnit)
+        private bool ExistenceAdUnit(string idAdUnit)
         {
-            if (codeAdUnit.IsEmpty())
+            if (idAdUnit.IsEmpty())
             {
                 return false;
             }
@@ -133,7 +133,7 @@
             var select = new Select(UserConnection)
                 .Count("UsrName").As("RecordsCount")
                 .From("UsrAdUnits")
-                .Where("UsrAdUnits", "UsrCode").IsEqual(Column.Parameter(codeAdUnit))
+                .Where("UsrAdUnits", "Id").IsEqual(Column.Parameter(idAdUnit))
                 as Select;
 
             int result = 0;
