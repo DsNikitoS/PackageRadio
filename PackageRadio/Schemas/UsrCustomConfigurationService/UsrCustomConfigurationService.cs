@@ -150,6 +150,37 @@
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
        ResponseFormat = WebMessageFormat.Json)]
 
+        public string GetLastIsssueForToday(string idAdUnit)
+        {
+            string result = "";
+            if (!ExistenceAdUnit(idAdUnit))
+            {
+                return "Введите корректный Id рекламного блока";
+            }
+
+            DateTime dateNowDateTime = DateTime.Now.Subtract(new TimeSpan(3, 0, 0));
+            string dateNow = dateNowDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+            var select = new Select(UserConnection)
+                .Top(1)
+                .Column("UsrIssues", "UsrName").As("TitleLastIssueForToday")
+                .From("UsrIssues")
+                .Where(Func.DateDiff(DateDiffQueryFunctionInterval.Day, Column.Parameter(dateNow), Column.SourceColumn("UsrDateIssues"))).IsEqual(Column.Parameter(0))
+                .OrderByDesc("UsrDateIssues")
+                as Select;
+
+            select.ExecuteReader(dataReader => 
+            {
+                result = dataReader.GetColumnValue<string>("TitleLastIssueForToday");    
+            });
+
+            return result;
+        }
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped,
+       ResponseFormat = WebMessageFormat.Json)]
+
         // Метод вывода информации о выпуске по его имени
         // Если UsrName оставлен пустым, то выводятся все выпуски
         public string GetInfoAboutIssues(string usrName)
