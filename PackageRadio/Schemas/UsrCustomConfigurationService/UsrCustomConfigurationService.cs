@@ -9,7 +9,6 @@
     using Terrasoft.Core.Entities;
     using Terrasoft.Web.Common;
     using Terrasoft.Configuration;
-    using Terrasoft.Web.Http.Abstractions;
     using Terrasoft.Core.DB;
     using System.Collections.Generic;
     using Newtonsoft.Json;
